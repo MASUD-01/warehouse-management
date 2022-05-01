@@ -13,7 +13,7 @@ const Carproducts = () => {
             {
                 carproducts.map(product => <div key={product._id} className='col-md-4 p-0 mb-3'>
 
-                    <Card style={{ width: '18rem', margin: 'auto' }} >
+                    <Card style={{ width: '20rem', margin: 'auto' }} >
                         <Card.Img variant="top" src={product.img} />
                         <Card.Body>
                             <Card.Title>{product.name}</Card.Title>
