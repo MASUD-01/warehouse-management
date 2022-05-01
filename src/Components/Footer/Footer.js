@@ -3,7 +3,7 @@ import './Footer.css'
 //className='footer d-flex justify-content-around align-items-center'
 const Footer = () => {
     return (
-        <div className='footer row align-items-center'>
+        <div className='footer row align-items-center p-0 m-0'>
             <div className='col-md-3'>
                 <h5>Our Partners</h5>
                 <p><small>Apartments.com </small> </p>
