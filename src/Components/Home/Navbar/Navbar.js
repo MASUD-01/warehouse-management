@@ -1,7 +1,14 @@
+import { signOut } from 'firebase/auth';
 import React from 'react';
+import { useAuthState } from 'react-firebase-hooks/auth';
 import { Link } from 'react-router-dom';
+import auth from '../../firebase.init';
 
 const Navbar = () => {
+    const [user] = useAuthState(auth)
+    const handleSignout = () => {
+        signOut(auth)
+    }
     return (
         <div>
             <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -13,18 +20,25 @@ const Navbar = () => {
                     <div className="collapse navbar-collapse " id="navbarNavDropdown">
                         <ul className="navbar-nav ms-auto">
                             <li className="nav-item">
-                                <a className="nav-link active" aria-current="page" href="/">Home</a>
+                                <a className="nav-link" aria-current="page" href="/">Home</a>
                             </li>
                             <li className="nav-item">
-                                <a className="nav-link" href="/login">Login</a>
+                                <a className="nav-link" aria-current="page" href="/blog">Blogs</a>
                             </li>
+
+                            <li className="nav-item">
+                                <Link className="nav-link" to="/inventory">Inventory</Link>
+                            </li>
+                            {
+                                user ? <li className="nav-item">
+                                    <a className="nav-link" onClick={handleSignout}>signout</a>
+                                </li> :
+                                    <li className="nav-item">
+                                        <a className="nav-link" href="/login">Login</a>
+                                    </li>}
                             <li className="nav-item">
                                 <a className="nav-link" href="/signup">Signup</a>
                             </li>
-                            <li className="nav-item">
-                                <Link className="nav-link" to="/products">Inventory</Link>
-                            </li>
-
                         </ul>
                     </div>
                 </div>

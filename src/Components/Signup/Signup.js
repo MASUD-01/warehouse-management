@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { useCreateUserWithEmailAndPassword } from 'react-firebase-hooks/auth';
+import { useCreateUserWithEmailAndPassword, useSignInWithGoogle } from 'react-firebase-hooks/auth';
 import auth from '../firebase.init';
 
 const Signup = () => {
+    const [signInWithGoogle, users] = useSignInWithGoogle(auth);
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
@@ -24,7 +25,7 @@ const Signup = () => {
         setConfirmPassword(event.target.value);
     }
 
-    if (user) {
+    if (user || users) {
         navigate('/');
     }
 
@@ -64,7 +65,8 @@ const Signup = () => {
                 </form>
                 <p>
                     Already Have an account? <Link className='form-link' to="/login">Login</Link>
-                </p>
+                </p> <br />
+                Or sign in with <button onClick={() => signInWithGoogle()} className='btn btn-primary'>Google</button>
             </div>
         </div>
     );

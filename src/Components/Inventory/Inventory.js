@@ -3,15 +3,19 @@ import { Button, Card, Modal } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import './Inventory.css'
 import useUser from '../../Hooks/useUser';
-import Navbar from '../Home/Navbar/Navbar';
+import auth from '../firebase.init';
+import { useAuthState } from 'react-firebase-hooks/auth';
+
 
 const Inventory = () => {
     const [product, setProduct] = useState([]);
     const handleClose = () => setShow(false);
     const [show, setShow] = useState(false);
+    const [users] = useAuthState(auth)
+    console.log(users)
 
     useEffect(() => {
-        fetch('http://localhost:5000/products')
+        fetch('https://pure-lake-48763.herokuapp.com/products')
             .then(res => res.json())
             .then(json => {
                 setProduct(json)
@@ -22,7 +26,7 @@ const Inventory = () => {
         const confirmD = window.confirm('Are You Sure')
         if (confirmD) {
 
-            fetch(`http://localhost:5000/products/${id}`, {
+            fetch(`https://pure-lake-48763.herokuapp.com/products/${id}`, {
                 method: 'DELETE',
             })
                 .then(res => res.json())
@@ -123,11 +127,6 @@ const Inventory = () => {
 
                 </Modal>
             </div>
-
-
-            {/* {
-                carproducts.map(p => <SingleInventory p={p} key={p._id} />)
-            } */}
         </div>
     );
 };

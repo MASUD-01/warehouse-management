@@ -1,28 +1,29 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
-import useProductsDetails from '../../Hooks/useProductsDetails';
+// import useProductsDetails from '../../Hooks/useProductsDetails';
 
 const Servicedetails = () => {
     const { id } = useParams();
-    const [products] = useProductsDetails(id);
+    useEffect(() => {
+        const url = `https://pure-lake-48763.herokuapp.com/products/${id}`;
+        fetch(url)
+            .then(res => res.json())
+            .then(data => {
+                setQuantity(data.qty)
+                setInventory(data)
+            });
+
+    }, [id]);
 
     const [inventory, setInventory] = useState({});
-    console.log(inventory)
     const [quant, setQuantity] = useState(0)
-    useEffect(() => {
-        fetch(`https://localhost:5000/products/${id}`)
-            .then(res => res.json())
-            .then(json => {
-                setQuantity(json.quantity)
-                console.log(json)
-                setInventory(json)
-            })
-    }, [id])
+
     const update = (e) => {
         e.preventDefault()
-        const url = `https://localhost:5000/products/${id}`;
+        const url = `https://pure-lake-48763.herokuapp.com/products/${id}`;
         const quant = e.target.quantity.value
-        const quantity = parseInt(quant) + inventory.quantity
+        const quantity = parseInt(quant) + inventory.qty
+        console.log(quantity)
         const formData = { quantity }
 
         fetch(url, {
@@ -34,12 +35,13 @@ const Servicedetails = () => {
             .then(json => {
 
                 setQuantity(quantity)
+                console.log(json.qty)
             })
 
     }
 
     const deliver = (e) => {
-        const url = `https://localhost:5000/products/${id}`;
+        const url = `https://pure-lake-48763.herokuapp.com/products/${id}`;
         const quantity = quant - 1
         const formData = { quantity }
 
@@ -59,14 +61,14 @@ const Servicedetails = () => {
         <div className="container">
 
             <div className='manage-inventory'>
-                <img src={inventory.img} alt="" />
+                <img src={inventory?.img} alt="" />
                 <div className='product-info'>
-                    <h4 className='mb-3'>Name : {inventory.name}</h4>
+                    <h4 className='mb-3'>Name : {inventory?.name}</h4>
                     <p>
-                        {inventory.description}
+                        {inventory?.des}
                     </p>
                     <h5 className='mt-2'>Quantity : {quant}</h5>
-                    <h5 className='mt-2'>Price : $ {inventory.price}</h5>
+                    <h5 className='mt-2'>Price : $ {inventory?.price}</h5>
                     <form onSubmit={update} className="add-quantity">
                         <input name='quantity' type="number" placeholder='Add Quantity' required />
                         <button type='submit' className='btn btn-primary'>ADD</button>
@@ -78,7 +80,7 @@ const Servicedetails = () => {
 
             {/* End  */}
             <div className='d-flex justify-content-center mt-5'>
-                <Link className='btn-special2' to="/inventory">Manage Inventory</Link>
+                <Link className='btn btn-primary' to="/inventory">Manage Inventory</Link>
 
             </div>
         </div>

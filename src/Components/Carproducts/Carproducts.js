@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 const Carproducts = () => {
     const [carproducts, setCarproducts] = useState([])
     useEffect(() => {
-        fetch('http://localhost:5000/products')
+        fetch('https://pure-lake-48763.herokuapp.com/products')
             .then(res => res.json())
             .then(data => setCarproducts(data))
     }, [])
@@ -13,7 +13,7 @@ const Carproducts = () => {
         <div className='row p-0 w-100 container mx-auto mt-5'>
             <h2 className='mb-5'>products</h2>
             {
-                carproducts.map(product => <div key={product._id} className='col-md-4 p-0 mb-3'>
+                carproducts.slice(0, 6).map(product => <div key={product._id} className='col-md-4 p-0 mb-3'>
 
                     <Card style={{ width: '20rem', margin: 'auto' }} >
                         <Card.Img variant="top" src={product.img} />
@@ -23,8 +23,7 @@ const Carproducts = () => {
                             <Card.Title>price: {product.price}</Card.Title>
                             <Card.Title>quantity: {product.qty}</Card.Title>
                             <Card.Text>
-                                Some quick example text to build on the card title and make up the bulk of
-                                the card's content.
+                                {product.des}
                             </Card.Text>
                             <Link to={`/inventory/${product._id}`} className=" btn btn-primary">Update</Link>
                         </Card.Body>

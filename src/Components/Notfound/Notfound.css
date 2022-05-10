@@ -1,0 +1,11 @@
+.error-page {
+    margin: auto;
+}
+
+.error-page h1 {
+    font-size: 200px;
+}
+
+.error-page p {
+    font-size: 50px;
+}

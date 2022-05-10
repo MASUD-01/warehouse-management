@@ -4,7 +4,7 @@ const useProductsDetails = id => {
     const [products, setProducts] = useState({});
 
     useEffect(() => {
-        const url = `http://localhost:5000/products/${id}`;
+        const url = `https://pure-lake-48763.herokuapp.com/products/${id}`;
         console.log(url);
         fetch(url)
             .then(res => res.json())

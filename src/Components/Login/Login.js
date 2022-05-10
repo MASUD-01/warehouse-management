@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
-import { useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
+import { useSignInWithEmailAndPassword, useSignInWithGoogle } from 'react-firebase-hooks/auth';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import auth from '../firebase.init';
 import './Login.css';
 
 const Login = () => {
+    const [signInWithGoogle, users] = useSignInWithGoogle(auth);
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [
@@ -26,7 +27,7 @@ const Login = () => {
         setPassword(event.target.value);
     }
 
-    if (user) {
+    if (user || users) {
         navigate(from, { replace: true });
     }
 
@@ -56,7 +57,8 @@ const Login = () => {
                 </form>
                 <p>
                     New to Smart-car-? <Link className='form-link' to="/signup">Create an account</Link>
-                </p>
+                </p> <br />
+                Or sign in with <button onClick={() => signInWithGoogle()} className='btn btn-primary'>Google</button>
             </div>
         </div>
     );
