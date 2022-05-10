@@ -1,11 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { Button, Card, Modal } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-
 import './Inventory.css'
-
-import SingleInventory from '../SingleInventory/SingleInventory';
 import useUser from '../../Hooks/useUser';
+import Navbar from '../Home/Navbar/Navbar';
 
 const Inventory = () => {
     const [product, setProduct] = useState([]);
@@ -69,6 +67,7 @@ const Inventory = () => {
 
     return (
         <div>
+
             <div className='container mt-5'>
 
 

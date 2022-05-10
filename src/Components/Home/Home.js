@@ -10,7 +10,7 @@ import Aboutus from '../about/Aboutus';
 const Home = () => {
     return (
         <div>
-            <Navbar></Navbar>
+            {/* <Navbar></Navbar> */}
             <Banner></Banner>
             <Aboutus></Aboutus>
             <Carproducts></Carproducts>

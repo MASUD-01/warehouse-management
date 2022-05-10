@@ -1,35 +1,63 @@
-import React from 'react';
-import { Button, Form } from 'react-bootstrap';
+import React, { useState } from 'react';
+import { useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import auth from '../firebase.init';
+import './Login.css';
 
 const Login = () => {
-    const handleEmail = (e) => {
-        const emailInput = e.target.value;
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [
+        signInWithEmailAndPassword,
+        user,
+        loading,
+        error,
+    ] = useSignInWithEmailAndPassword(auth);
+
+    const navigate = useNavigate();
+    const location = useLocation();
+    const from = location.state?.from?.pathname || '/';
+
+    const handleEmailBlur = event => {
+        setEmail(event.target.value);
     }
-    const handlePassword = (e) => {
-        const passwordInput = e.target.value;
-        console.log(passwordInput)
+
+    const handlePasswordBlur = event => {
+        setPassword(event.target.value);
     }
-    const handleSubmit = (event) => {
+
+    if (user) {
+        navigate(from, { replace: true });
+    }
+
+    const handleUserSignIn = event => {
         event.preventDefault();
-
+        signInWithEmailAndPassword(email, password);
     }
+
     return (
-        <div className='w-50 mx-auto'>
-            <Form onSubmit={handleSubmit}>
-                <Form.Group className="mb-3" controlId="formBasicEmail">
-                    <Form.Label>Email address</Form.Label>
-                    <Form.Control onBlur={handleEmail} type="email" placeholder="Enter email" required />
-                </Form.Group>
-
-                <Form.Group className="mb-3" controlId="formBasicPassword">
-                    <Form.Label>Password</Form.Label>
-                    <Form.Control onBlur={handlePassword} type="password" placeholder="Password" required />
-                </Form.Group>
-
-                <Button variant="primary w-50 d-block mx-auto mb-2" type="submit">
-                    Login
-                </Button>
-            </Form>
+        <div className='form-container'>
+            <div>
+                <h2 className='form-title'>Login</h2>
+                <form onSubmit={handleUserSignIn}>
+                    <div className="input-group">
+                        <label htmlFor="email">Email</label>
+                        <input onBlur={handleEmailBlur} type="email" name="email" id="" required />
+                    </div>
+                    <div className="input-group">
+                        <label htmlFor="password">Password</label>
+                        <input onBlur={handlePasswordBlur} type="password" name="password" id="" required />
+                    </div>
+                    <p style={{ color: 'red' }}>{error?.message}</p>
+                    {
+                        loading && <p>Loading...</p>
+                    }
+                    <input className='form-submit' type="submit" value="Login" />
+                </form>
+                <p>
+                    New to Smart-car-? <Link className='form-link' to="/signup">Create an account</Link>
+                </p>
+            </div>
         </div>
     );
 };
