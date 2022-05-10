@@ -4,7 +4,7 @@
         "price": "$23453",
         "img": "https://i.ibb.co/Qp147hh/listing-Grid-img4.jpg",
         "des": "When selling a car, the description can determine whether or not a buyer takes the next step in the purchasing process and comes down to the dealership for a closer look.",
-        "quantity": "1",
+        "qty": 1,
         "supplier": "mondol traders"
     },
     {
@@ -12,7 +12,7 @@
         "price": "$23453",
         "img": " https://i.ibb.co/Qp147hh/listing-Grid-img4.jpg",
         "des": "When selling a car, the description can determine whether or not a buyer takes the next step in the purchasing process and comes down to the dealership for a closer look.",
-        "quantity": "1",
+        "qty": 1,
         "supplier": "mondol traders"
     },
     {
@@ -20,7 +20,7 @@
         "price": "$23453",
         "img": "https://i.ibb.co/Qp147hh/listing-Grid-img4.jpg",
         "des": "When selling a car, the description can determine whether or not a buyer takes the next step in the purchasing process and comes down to the dealership for a closer look.",
-        "quantity": "1",
+        "qty": 1,
         "supplier": "mondol traders"
     },
     {
@@ -28,7 +28,7 @@
         "price": "$23453",
         "img": "https://i.ibb.co/Qp147hh/listing-Grid-img4.jpg",
         "des": "When selling a car, the description can determine whether or not a buyer takes the next step in the purchasing process and comes down to the dealership for a closer look.",
-        "quantity": "1",
+        "qty": 1,
         "supplier": "mondol traders"
     },
     {
@@ -36,7 +36,7 @@
         "price": "$23453",
         "img": "https://i.ibb.co/Qp147hh/listing-Grid-img4.jpg",
         "des": "When selling a car, the description can determine whether or not a buyer takes the next step in the purchasing process and comes down to the dealership for a closer look.",
-        "quantity": "1",
+        "qty": 1,
         "supplier": "mondol traders"
     },
     {
@@ -44,7 +44,7 @@
         "price": "$23453",
         "img": "https://i.ibb.co/Qp147hh/listing-Grid-img4.jpg",
         "des": "When selling a car, the description can determine whether or not a buyer takes the next step in the purchasing process and comes down to the dealership for a closer look.",
-        "quantity": "1",
+        "qty": 1,
         "supplier": "mondol traders"
     }
 ]
