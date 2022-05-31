@@ -40,7 +40,7 @@ const Login = () => {
         <div className='form-container'>
             <div>
                 <h2 className='form-title'>Login</h2>
-                <form onSubmit={handleUserSignIn}>
+                <form onSubmit={handleUserSignIn} className='w-75 mx-auto'>
                     <div className="input-group">
                         <label htmlFor="email">Email</label>
                         <input onBlur={handleEmailBlur} type="email" name="email" id="" required />
@@ -53,7 +53,7 @@ const Login = () => {
                     {
                         loading && <p>Loading...</p>
                     }
-                    <input className='form-submit' type="submit" value="Login" />
+                    <input className='form-submit w-75' type="submit" value="Login" />
                 </form>
                 <p>
                     New to Smart-car-? <Link className='form-link' to="/signup">Create an account</Link>
